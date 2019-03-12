@@ -18,7 +18,7 @@ class Contact(models.Model):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = phone = PhoneField(blank=True)
+    phone = PhoneField(blank=True)
     street = models.TextField()
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=15)
