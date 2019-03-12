@@ -19,7 +19,7 @@ class Contact(models.Model):
     lastName = models.CharField(max_length=100)
     email = models.EmailField()
     phone = PhoneField(blank=True)
-    street = models.TextField()
+    street = models.CharField(max_length=128)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=15)
     zipCode = models.CharField(max_length=5)
