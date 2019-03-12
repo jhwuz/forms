@@ -13,12 +13,10 @@ def get_name(request):
             return render(request, 'form/render-name.html', {'data': form.cleaned_data})
     else:
         form = NameForm()
-    return render(request, 'form/name.html', {'form': form})
-
-
-# Django auth User Form
-def register(request):
-    return HttpResponseRedirect('/registered')
+    return render(request, 'form/name.html', {
+        'form': form,
+        'title': 'Simple Form',
+    })
 
 
 # model form
@@ -30,7 +28,10 @@ def get_user(request):
             return render(request, 'form/render-user.html', {'data': form.cleaned_data})
     else:
         form = UserForm()
-    return render(request, 'form/user.html', {'form': form})
+    return render(request, 'form/user.html', {
+        'form': form,
+        'title': 'Model User',
+    })
 
 
 def register(request):
@@ -43,11 +44,15 @@ def register(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'form/register.html', {'form': form})
+    return render(request, 'form/register.html', {
+        'form': form,
+        'title': 'Register',
+    })
 
 
 def home(request):
     context = {
         'data': request.POST,
+        'title': 'Home',
     }
     return render(request, 'form/home.html', context)
