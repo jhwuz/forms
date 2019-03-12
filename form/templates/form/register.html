@@ -1,7 +1,7 @@
 {% extends 'form/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h2>Register</h2>
+    <legend class="border-bottom mb-4">Register Now</legend>
     <fieldset class="form-group">
         <form action={% url 'register' %} method="post">
             {% csrf_token %}
