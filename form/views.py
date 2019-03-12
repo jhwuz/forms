@@ -1,0 +1,43 @@
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from .forms import NameForm, UserForm
+from django.contrib.auth.forms import UserCreationForm
+
+
+# simple form
+def get_name(request):
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            return render(request, 'form/render-name.html', {'data': form.cleaned_data})
+    else:
+        form = NameForm()
+    return render(request, 'form/name.html', {'form': form})
+
+
+# Django auth User Form
+def register(request):
+    return HttpResponseRedirect('/registered')
+
+
+# model form
+def get_user(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'form/render-user.html', {'data': form.cleaned_data})
+    else:
+        form = UserForm()
+    return render(request, 'form/user.html', {'form': form})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'form/render-django-registrations')
+    else:
+        form = UserCreationForm()
+    return render(request, 'form/django-user.html', {'form': form})
