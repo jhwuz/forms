@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from .forms import NameForm, UserForm
+from .models import Post
+from .forms import NameForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
@@ -16,21 +16,6 @@ def get_name(request):
     return render(request, 'form/name.html', {
         'form': form,
         'title': 'Simple Form',
-    })
-
-
-# model form
-def get_user(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'form/render-user.html', {'data': form.cleaned_data})
-    else:
-        form = UserForm()
-    return render(request, 'form/user.html', {
-        'form': form,
-        'title': 'Model User',
     })
 
 
@@ -54,5 +39,6 @@ def home(request):
     context = {
         'data': request.POST,
         'title': 'Home',
+        'posts': Post.objects.all()
     }
     return render(request, 'form/home.html', context)
