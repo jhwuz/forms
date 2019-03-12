@@ -24,6 +24,7 @@ urlpatterns = [
     path('register/', form_views.register, name='register'),
     path('home/', form_views.home, name='home'),
     path('post/', form_views.make_post, name='make-post'),
+    path('contact/', form_views.contact, name='contact'),
     path('login/', auth_views.LoginView.as_view(template_name='form/login.html'), {'title': 'login'}, name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='form/logout.html'), {'title': 'logout'}, name='logout'),
 ]

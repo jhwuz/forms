@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post
-from .forms import NameForm, PostForm
+from .forms import NameForm, PostForm, ContactForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -58,5 +58,20 @@ def make_post(request):
         form = PostForm()
     return render(request, 'form/post.html', {
         'form': form,
-        'title': 'Simple Form',
+        'title': 'Make Post',
+    })
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'form/render-contact.html', {'data': form.cleaned_data})
+
+    else:
+        form = ContactForm()
+    return render(request, 'form/post.html', {
+        'form': form,
+        'title': 'Make Post',
     })

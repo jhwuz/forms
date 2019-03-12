@@ -1,0 +1,15 @@
+{% extends 'form/base.html' %}
+{% block content %}
+    <h1>
+        Here's what you entered:
+    </h1>
+    <div>First Name: {{ data.firstName }}</div>
+    <div>Last Name: {{ data.lastName }}</div>
+    <div>Email: {{ data.email }}</div>
+    <div>Phone Number: {{ data.phone }}</div>
+    <div>Street: {{ data.street }}</div>
+    <div>City: {{ data.city }}</div>
+    <div>State: {{ data.state }}</div>
+    <div>Zip Code: {{ data.zipCode }}</div>
+    <div>Message: {{ data.message }}</div>
+{% endblock %}
