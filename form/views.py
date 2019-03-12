@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import NameForm, UserForm
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 # simple form
@@ -37,7 +38,13 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'form/render-django-registrations')
+            messages.success(request,
+                             f'Your account has been created, {form.cleaned_data.get("username")}. You may now login.')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'form/django-user.html', {'form': form})
+
+
+def home(request):
+    return render(request, 'form/home.html', {'data': request.POST})

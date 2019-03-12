@@ -23,6 +23,7 @@ urlpatterns = [
     path('name/', form_views.get_name, name='name-form'),
     path('user/', form_views.get_user, name='user-form'),
     path('register/', form_views.register, name='register'),
+    path('home/', form_views.home, name='home'),
     path('login/', auth_views.LoginView.as_view(template_name='form/login.html'), name='login'),
-    path('login/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='form/logout.html'), name='logout'),
 ]
