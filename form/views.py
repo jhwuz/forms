@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post
-from .forms import NameForm
+from .forms import NameForm, PostForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
@@ -42,3 +42,19 @@ def home(request):
         'posts': Post.objects.all()
     }
     return render(request, 'form/home.html', context)
+
+
+def make_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('home')
+    else:
+        form = PostForm()
+    return render(request, 'form/post.html', {
+        'form': form,
+        'title': 'Simple Form',
+    })

@@ -1,9 +1,14 @@
 {% extends 'form/base.html' %}
 {% block content %}
     {% if user.is_authenticated %}
-        <h2>
-            Welcome, {{ user.username }}
-        </h2>
+        <div>
+            <h2>
+                Welcome, {{ user.username }}
+                <a href="{% url 'logout' %}">Logout</a></h1>
+            </h2>
+            Make a Post? <a href={% url 'make-post' %}>Click Here to Post</a>
+            <hr>
+        </div>
     {% else %}
         <h2>
             <div>
@@ -14,11 +19,14 @@
     {% if posts %}
         {% for post in posts %}
             <div>
-                <a href="#">{{ post.author }}</a>
-                <small>{{ post.date_posted }}</small>
+                <div>
+                    <a href="#">{{ post.author }}</a>
+                    <small>{{ post.date_posted }}</small>
+                </div>
+                <h2>{{ post.title }}</h2>
+                <div>{{ post.content }}</div>
             </div>
-            <h2>{{ post.title }}</h2>
-            <div>{{ post.content }}</div>
+            <hr>
         {% endfor %}
 
     {% endif %}
