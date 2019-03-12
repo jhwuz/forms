@@ -1,32 +1,17 @@
 {% extends 'form/base.html' %}
 {% block content %}
-    {% if user.is_authenticated %}
-        <div>
-            <h2>
-                Welcome, {{ user.username }}
-                <a href="{% url 'logout' %}">Logout</a></h1>
-            </h2>
-            Make a Post? <a href={% url 'make-post' %}>Click Here to Post</a>
-            <hr>
-        </div>
-    {% else %}
-        <h2>
-            <div>
-                You are not currently logged in. <a href={% url 'login' %}>Log In?</a>
-            </div>
-        </h2>
-    {% endif %}
     {% if posts %}
         {% for post in posts %}
-            <div>
-                <div>
-                    <a href="#">{{ post.author }}</a>
-                    <small>{{ post.date_posted }}</small>
+            <div class="card" style="width: 100rem;">
+                <div class="card-body">
+                    <div>
+                        <a href="#">{{ post.author }}</a>
+                        <small>{{ post.date_posted }}</small>
+                    </div>
+                    <h2>{{ post.title }}</h2>
+                    <div>{{ post.content }}</div>
                 </div>
-                <h2>{{ post.title }}</h2>
-                <div>{{ post.content }}</div>
             </div>
-            <hr>
         {% endfor %}
 
     {% endif %}

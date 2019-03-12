@@ -3,6 +3,7 @@ from .models import Post
 from .forms import NameForm, PostForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # simple form
@@ -44,6 +45,7 @@ def home(request):
     return render(request, 'form/home.html', context)
 
 
+@login_required
 def make_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
