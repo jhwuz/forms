@@ -43,8 +43,11 @@ def register(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'form/django-user.html', {'form': form})
+    return render(request, 'form/register.html', {'form': form})
 
 
 def home(request):
-    return render(request, 'form/home.html', {'data': request.POST})
+    context = {
+        'data': request.POST,
+    }
+    return render(request, 'form/home.html', context)

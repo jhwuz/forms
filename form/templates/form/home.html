@@ -1,7 +1,15 @@
 {% extends 'form/base.html' %}
 {% block content %}
-<h2>
-    Welcome, {{ user.username }}
-</h2>
+    {% if user.is_authenticated %}
+        <h2>
+            Welcome, {{ user.username }}
+        </h2>
+    {% else %}
+        <h2>
+            <div>
+                You are not currently logged in. <a href={% url 'login' %}>Log In?</a>
+            </div>
+        </h2>
+    {% endif %}
 {% endblock %}
 
